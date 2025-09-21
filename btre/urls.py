@@ -14,30 +14,80 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.contrib.admin import site
+from django.urls import path
 from django.conf.urls.static import static
-from .settings import DEBUG, STATIC_URL, STATIC_ROOT
+from .settings import (
+    DEBUG,
+    STATIC_URL,
+    STATIC_ROOT
+)
+from .views import (
+    index,
+    about,
+    dashboard,
+    login,
+    logout,
+    register,
+    inquire,
+    listings,
+    listing,
+    search
+)
 urlpatterns = [
     path(
         '',
-        include('pages.urls')
+        index,
+        name = 'index'
     ),
     path(
-        'accounts/',
-        include('accounts.urls')
+        'about',
+        about,
+        name = 'about'
+    ),
+    path(
+        'accounts/dashboard',
+        dashboard,
+        name = 'dashboard'
+    ),
+    path(
+        'accounts/login',
+        login,
+        name = 'login'
+    ),
+    path(
+        'accounts/logout',
+        logout,
+        name = 'logout'
+    ),
+    path(
+        'accounts/register',
+        register,
+        name = 'register'
     ),
     path(
         'admin/',
-        admin.site.urls
+        site.urls
     ),
     path(
-        'inquiries/',
-        include('inquiries.urls')
+        'inquiries/inquire',
+        inquire,
+        name = 'inquire'
     ),
     path(
-        'listings/',
-        include('listings.urls')
+        'listings',
+        listings,
+        name = 'listings'
+    ),
+    path(
+        'listings/<uuid:listing_id>',
+        listing,
+        name = 'listing'
+    ),
+    path(
+        'search',
+        search,
+        name = 'search'
     ),
 ]
 # Serve static files only during development

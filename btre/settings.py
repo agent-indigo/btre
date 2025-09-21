@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
-import cloudinary
 from pathlib import Path
-from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
+import cloudinary
+from dotenv import load_dotenv
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 # load environment variables from .env
 load_dotenv()
@@ -110,18 +110,14 @@ EMAIL_USE_TLS = os.getenv(
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 INSTALLED_APPS = [
-    'accounts.apps.AccountsConfig',
+    'btre.apps.BtreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.humanize',
     'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.staticfiles',
-    'inquiries.apps.InquiriesConfig',
-    'listings.apps.ListingsConfig',
-    'pages.apps.PagesConfig',
-    'realtors.apps.RealtorsConfig'
+    'django.contrib.staticfiles'
 ]
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -138,7 +134,7 @@ TEMPLATES = [{
     'DIRS': [
         os.path.join(
             BASE_DIR,
-            'templates'
+            'btre/templates'
         )
     ],
     'APP_DIRS': True,
