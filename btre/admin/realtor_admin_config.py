@@ -29,7 +29,7 @@ class RealtorAdminConfig(admin.ModelAdmin):
         'created_at',
         'updated_at'
     ]
-    list_per_page = 25
+    list_per_page = 20
     def email(
         self,
         realtor: Realtor

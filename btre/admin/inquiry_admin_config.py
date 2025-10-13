@@ -11,7 +11,7 @@ class InquiryAdminConfig(admin.ModelAdmin):
     """
     list_display = [
         'message',
-        'listing_title',
+        'listing__title',
         'first',
         'last',
         'email',
@@ -23,14 +23,31 @@ class InquiryAdminConfig(admin.ModelAdmin):
     ]
     search_fields = [
         'message',
-        'listing_title',
+        'listing__title',
         'first_name',
         'last_name',
         'email_address',
         'phone_number',
         'created_at'
     ]
-    list_per_page = 25
+    list_per_page = 20
+    def listing__title(
+        self,
+        inquiry: Inquiry
+    ):
+        """
+        Listing title as a link to its admin page
+        """
+        return format_html(
+            '<a href="{url}">{title}</a>',
+            url = reverse(
+                'admin:btre_listing_change',
+                args = [
+                    inquiry.listing.id
+                ]
+            ),
+            title = inquiry.listing.title
+        )
     def first(
         self,
         inquiry: Inquiry
@@ -43,11 +60,11 @@ class InquiryAdminConfig(admin.ModelAdmin):
             url = reverse(
                 'admin:auth_user_change',
                 args = [
-                    inquiry.user_id.id
+                    inquiry.user.id
                 ]
             ),
             name = inquiry.first_name
-        ) if inquiry.user_id is not None else inquiry.first_name
+        ) if inquiry.user is not None else inquiry.first_name
     first.short_description = 'First Name'
     def last(
         self,
@@ -61,11 +78,11 @@ class InquiryAdminConfig(admin.ModelAdmin):
             url = reverse(
                 'admin:auth_user_change',
                 args = [
-                    inquiry.user_id.id
+                    inquiry.user.id
                 ]
             ),
             name = inquiry.last_name
-        ) if inquiry.user_id is not None else inquiry.last_name
+        ) if inquiry.user is not None else inquiry.last_name
     last.short_description = 'Last Name'
     def email(
         self,

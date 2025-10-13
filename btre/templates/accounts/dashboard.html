@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block title %}
   Account Dashboard
 {% endblock %}
@@ -27,7 +28,13 @@
               <thead>
                 <tr>
                   <th scope="col">
-                    #
+                    Listing
+                  </th>
+                  <th scope="col">
+                    Message
+                  </th>
+                  <th scope="col">
+                    Sent
                   </th>
                   <th scope="col">
                     Property
@@ -39,6 +46,12 @@
                   <tr>
                     <td>
                       {{ inquiry.listing_title }}
+                    </td>
+                    <td>
+                      {{ inquiry.message }}
+                    </td>
+                    <td>
+                      {{ inquiry.created_at }}
                     </td>
                     <td>
                       <a

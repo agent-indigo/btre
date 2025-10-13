@@ -22,8 +22,8 @@ class ListingAdminConfig(admin.ModelAdmin):
         'lot_size',
         'price',
         'is_published',
-        'realtor_first_name',
-        'realtor_last_name',
+        'realtor__first_name',
+        'realtor__last_name',
         'created_at',
         'updated_at'
     ]
@@ -40,8 +40,8 @@ class ListingAdminConfig(admin.ModelAdmin):
         'sqft',
         'lot_size',
         'price',
-        'realtor_id__first_name',
-        'realtor_id__last_name',
+        'realtor__first_name',
+        'realtor__last_name',
         'is_published',
         'created_at'
     ]
@@ -61,12 +61,12 @@ class ListingAdminConfig(admin.ModelAdmin):
         'garage',
         'sqft',
         'lot_size',
-        'realtor_id__first_name',
-        'realtor_id__last_name',
+        'realtor__first_name',
+        'realtor__last_name',
         'created_at'
     ]
     list_per_page = 25
-    def realtor_first_name(
+    def realtor__first_name(
         self,
         listing: Listing
     ):
@@ -76,14 +76,14 @@ class ListingAdminConfig(admin.ModelAdmin):
         return format_html(
             '<a href="{url}">{name}</a>',
             url = reverse(
-                'admin:realtors_realtor_change',
+                'admin:btre_realtor_change',
                 args = [
-                    listing.realtor_id.id
+                    listing.realtor.id
                 ]
             ),
-            name = listing.realtor_id.first_name
+            name = listing.realtor.first_name
         )
-    def realtor_last_name(
+    def realtor__last_name(
         self,
         listing: Listing
     ):
@@ -93,10 +93,10 @@ class ListingAdminConfig(admin.ModelAdmin):
         return format_html(
             '<a href="{url}">{name}</a>',
             url = reverse(
-                'admin:realtors_realtor_change',
+                'admin:btre_realtor_change',
                 args = [
-                    listing.realtor_id.id
+                    listing.realtor.id
                 ]
             ),
-            name = listing.realtor_id.last_name
+            name = listing.realtor.last_name
         )

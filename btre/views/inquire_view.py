@@ -15,7 +15,7 @@ def inquire(request):
         # check for existing inquiry
         if request.user.is_authenticated:
             LISTING_ID = request.POST['listing_id']
-            USER_ID = request.user_id
+            USER_ID = request.user.id
             has_contacted = Inquiry.objects.all().filter(
                 listing_id = LISTING_ID,
                 user_id = USER_ID
@@ -23,8 +23,8 @@ def inquire(request):
             if has_contacted:
                 messages.error(
                     request,
-                    'You have an existing inquiry regarding this listing.\
-                     Our realtor will reply soon!'
+                    'You have an existing inquiry regarding this listing. \
+                    Our realtor will reply soon!'
                 )
                 return redirect(f'/listings/{LISTING_ID}')
             else:

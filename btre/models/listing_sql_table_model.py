@@ -88,7 +88,7 @@ class Listing(models.Model):
     is_published = models.BooleanField(
         default = True
     )
-    realtor_id = models.ForeignKey(
+    realtor = models.ForeignKey(
         to = 'Realtor',
         on_delete = models.DO_NOTHING,
         verbose_name = 'Realtor'

@@ -170,7 +170,7 @@
                 <li class="list-group-item">
                   <i class="fas fa-user"></i> Realtor:
                   <span class="float-right">
-                    {{ listing.realtor_id }}
+                    {{ listing.realtor }}
                   </span>
                 </li>
               </ul>
@@ -184,7 +184,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          {% include 'partials/_realtor.html' with realtor=listing.realtor_id %}
+          {% include 'partials/_realtor.html' with realtor=listing.realtor %}
           <button
             class="btn-primary btn-block btn-lg"
             id="inquiry-button"
@@ -338,14 +338,14 @@
               <textarea
                 name="message"
                 class="form-control"
-              />
+              ></textarea>
             </div>
             <hr>
             <input
               type="submit"
               value="Send"
               class="btn btn-block btn-secondary"
-            >
+            />
           </form>
         </div>
       </div>

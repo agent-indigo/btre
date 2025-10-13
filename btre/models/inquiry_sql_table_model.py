@@ -20,7 +20,10 @@ class Inquiry(models.Model):
         editable = False
     )
     listing_title = models.CharField()
-    listing_id = models.IntegerField()
+    listing = models.ForeignKey(
+        to = 'Listing',
+        on_delete = models.CASCADE
+    )
     first_name = models.CharField()
     last_name = models.CharField()
     email_address = models.EmailField()
@@ -28,9 +31,9 @@ class Inquiry(models.Model):
     message = models.TextField(
         blank = True
     )
-    user_id = models.ForeignKey(
+    user = models.ForeignKey(
         to = 'auth.User',
-        on_delete = models.DO_NOTHING,
+        on_delete = models.CASCADE,
         blank = True
     )
     created_at = models.DateTimeField(
