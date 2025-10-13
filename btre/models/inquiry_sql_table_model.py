@@ -19,7 +19,6 @@ class Inquiry(models.Model):
         default = uuid4,
         editable = False
     )
-    listing_title = models.CharField()
     listing = models.ForeignKey(
         to = 'Listing',
         on_delete = models.CASCADE
@@ -42,5 +41,3 @@ class Inquiry(models.Model):
     updated_at = models.DateTimeField(
         auto_now = True
     )
-    def __str__(self):
-        return f'{self.message} {self.listing_title} {self.created_at}'

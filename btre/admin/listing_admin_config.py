@@ -65,7 +65,7 @@ class ListingAdminConfig(admin.ModelAdmin):
         'realtor__last_name',
         'created_at'
     ]
-    list_per_page = 25
+    list_per_page = 20
     def realtor__first_name(
         self,
         listing: Listing
@@ -83,6 +83,7 @@ class ListingAdminConfig(admin.ModelAdmin):
             ),
             name = listing.realtor.first_name
         )
+    realtor__first_name.short_description = 'Realtor First Name'
     def realtor__last_name(
         self,
         listing: Listing
@@ -100,3 +101,4 @@ class ListingAdminConfig(admin.ModelAdmin):
             ),
             name = listing.realtor.last_name
         )
+    realtor__last_name.short_description = 'Realtor Last Name'

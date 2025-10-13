@@ -48,6 +48,7 @@ class InquiryAdminConfig(admin.ModelAdmin):
             ),
             title = inquiry.listing.title
         )
+    listing__title.short_description = 'Listing Title'
     def first(
         self,
         inquiry: Inquiry
