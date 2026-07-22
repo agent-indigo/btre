@@ -28,9 +28,7 @@ class Listing(models.Model):
     zipcode = models.CharField(
         max_length = 5
     )
-    description = models.TextField(
-        blank = True
-    )
+    description = models.TextField()
     price = models.DecimalField(
         max_digits = 12,
         decimal_places = 2
@@ -57,23 +55,19 @@ class Listing(models.Model):
     )
     interior_photo_1 = CloudinaryField(
         'Interior Photo 1',
-        folder = CLOUDINARY_FOLDER,
-        blank = True
+        folder = CLOUDINARY_FOLDER
     )
     interior_photo_2 = CloudinaryField(
         'Interior Photo 2',
-        folder = CLOUDINARY_FOLDER,
-        blank = True
+        folder = CLOUDINARY_FOLDER
     )
     interior_photo_3 = CloudinaryField(
         'Interior Photo 3',
-        folder = CLOUDINARY_FOLDER,
-        blank = True
+        folder = CLOUDINARY_FOLDER
     )
     interior_photo_4 = CloudinaryField(
         'Interior Photo 4',
-        folder = CLOUDINARY_FOLDER,
-        blank = True
+        folder = CLOUDINARY_FOLDER
     )
     interior_photo_5 = CloudinaryField(
         'Interior Photo 5',
@@ -91,7 +85,8 @@ class Listing(models.Model):
     realtor = models.ForeignKey(
         to = 'Realtor',
         on_delete = models.DO_NOTHING,
-        verbose_name = 'Realtor'
+        verbose_name = 'Realtor',
+        blank = True
     )
     created_at = models.DateTimeField(
         auto_now_add = True

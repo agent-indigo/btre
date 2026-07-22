@@ -27,9 +27,7 @@ class Realtor(models.Model):
         'Photo',
         folder = CLOUDINARY_FOLDER
     )
-    description = models.TextField(
-        blank = True
-    )
+    description = models.TextField()
     email_address = models.EmailField()
     phone_number = models.CharField()
     is_mvp = models.BooleanField(

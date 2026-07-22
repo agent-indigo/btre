@@ -27,9 +27,7 @@ class Inquiry(models.Model):
     last_name = models.CharField()
     email_address = models.EmailField()
     phone_number = models.CharField()
-    message = models.TextField(
-        blank = True
-    )
+    message = models.TextField()
     user = models.ForeignKey(
         to = 'auth.User',
         on_delete = models.CASCADE,
